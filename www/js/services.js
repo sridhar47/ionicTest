@@ -1,9 +1,12 @@
+var config = {};
+    config.baseUrl = 'http://swapi.co/';
+    config.api = 'api/'
 angular.module('starter.services', [])
 
 .factory('Peoples', function($http){
     return {
       get:function (cb) {
-        $http.get('http://swapi.co/api/people').
+        $http.get(config.baseUrl+config.api+'people').
           success(function(data) {
               cb(data);
         });
@@ -14,13 +17,13 @@ angular.module('starter.services', [])
 .factory('Planets', function($http) {
   return {
       get:function (cb) {
-        $http.get('http://swapi.co/api/planets').
+        $http.get(config.baseUrl+config.api+'planets').
           success(function(data) {
               cb(data);
         });
       },
       getPlanetDetails: function(planetId, cb){
-        $http.get('http://swapi.co/api/planets/'+planetId).
+        $http.get(config.baseUrl+config.api+'planets/'+planetId).
           success(function(data) {
             cb(data);
         });
