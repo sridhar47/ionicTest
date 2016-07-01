@@ -16,8 +16,13 @@ angular.module('starter.services', [])
       get:function (cb) {
         $http.get('http://swapi.co/api/planets').
           success(function(data) {
-              console.log(data)
               cb(data);
+        });
+      },
+      getPlanetDetails: function(planetId, cb){
+        $http.get('http://swapi.co/api/planets/'+planetId).
+          success(function(data) {
+            cb(data);
         });
       }
     }

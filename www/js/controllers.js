@@ -9,12 +9,25 @@ angular.module('starter.controllers', [])
 
 .controller('PlanetsCtrl', function($scope, Planets) {
   Planets.get(function(data){
-    $scope.planets = data.results;
+    var p =  data.results;
+    var x = [];
+    for (var i = 0; i < p.length; i++) {
+      var item = p[i];
+      (function(item, i){
+        item.id = function(){
+          return i+2
+        }
+        x.push(item);
+      })(item, i)
+    }
+    $scope.planets = x;
   })
 })
 
-.controller('ChatDetailCtrl', function($scope, $stateParams, Chats) {
-  $scope.chat = Chats.get($stateParams.chatId);
+.controller('PlanetDetailCtrl', function($scope, $stateParams, Planets) {
+  Planets.getPlanetDetails($stateParams.planetId, function(planet){
+    $scope.planet = planet;
+  });
 })
 
 .controller('AccountCtrl', function($scope) {
