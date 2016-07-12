@@ -2,14 +2,20 @@ angular.module('starter.controllers', [])
 
 .controller('PeopleCtrl', function($scope, Peoples){
    Peoples.get(function (data) {
-      $scope.peopleList = data.results;
+      $scope.peopleList = data;
     });
     
 })
 
+.controller('PeopleDetailCtrl', function($scope, $stateParams, Peoples) {
+  Peoples.getPeopleDetails($stateParams.peopleId, function(people){
+    $scope.people = people;
+  });
+})
+
 .controller('PlanetsCtrl', function($scope, Planets) {
   Planets.get(function(data){
-    var p =  data.results;
+    var p =  data;
     var x = [];
     for (var i = 0; i < p.length; i++) {
       var item = p[i];

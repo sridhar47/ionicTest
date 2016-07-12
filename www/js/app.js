@@ -50,6 +50,16 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     }
   })
 
+  .state('tab.people-detail', {
+      url: '/people/:peopleId',
+      views: {
+        'tab-people': {
+          templateUrl: 'templates/people-detail.html',
+          controller: 'PeopleDetailCtrl'
+        }
+      }
+    })
+
   .state('tab.planets', {
       url: '/planets',
       views: {
